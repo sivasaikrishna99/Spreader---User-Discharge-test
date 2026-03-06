@@ -60,7 +60,7 @@ with st.expander("Advanced Settings"):
     )
 
     turns = st.number_input(
-        "Turns (not used in calculation)",
+        "Turns",
         min_value=0,
         max_value=300,
         value=0,
@@ -80,13 +80,13 @@ area_m2 = acres * ACRE_M2
 distance = area_m2 / swath
 
 # Flight time
-flight_time = distance / speed
+discharge_time = distance / speed
 
 # Total material required
 total_weight = dispense_per_acre * acres
 
 # Required discharge rate
-discharge_rate_kg_s = total_weight / flight_time
+discharge_rate_kg_s = total_weight / discharge_time
 discharge_rate_kg_min = discharge_rate_kg_s * 60
 
 # Test sample empty time
@@ -101,12 +101,14 @@ st.subheader("📊 Results")
 c1, c2 = st.columns(2)
 
 with c1:
+    st.metric("Test Sample Empty Time", f"{round(sample_time,1)} sec")
+    
+
+with st.expander("Advanced output"):
+    with c1:
     st.metric("Required Discharge Rate", f"{round(discharge_rate_kg_min,2)} kg/min")
     st.metric("Total Material Required", f"{round(total_weight,2)} kg")
-
-with c2:
     st.metric("Flight Time for Area", f"{round(flight_time,1)} sec")
-    st.metric("Test Sample Empty Time", f"{round(sample_time,1)} sec")
 
 st.caption(
     "Model:\n"
@@ -115,4 +117,5 @@ st.caption(
     "Total Weight = kg/acre × Area\n"
     "Discharge Rate = TotalWeight / Time\n"
     "Sample Empty Time = TestWeight / DischargeRate"
+
 )
