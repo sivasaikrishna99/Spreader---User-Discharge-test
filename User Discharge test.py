@@ -105,10 +105,9 @@ with c1:
     
 
 with st.expander("Advanced output"):
-    with c1:
-        st.metric("Required Discharge Rate", f"{round(discharge_rate_kg_min,2)} kg/min")
-        st.metric("Total Material Required", f"{round(total_weight,2)} kg")
-        st.metric("Discharge Time for Area", f"{round(discharge_time,1)} sec")
+    st.metric("Required Discharge Rate", f"{round(discharge_rate_kg_min,2)} kg/min")
+    st.metric("Total Material Required", f"{round(total_weight,2)} kg")
+    st.metric("Discharge Time for Area", f"{round(discharge_time,1)} sec")
 
 st.caption(
     "Model:\n"
@@ -119,6 +118,7 @@ st.caption(
     "Sample Empty Time = TestWeight / DischargeRate"
 
 )
+
 
 
 
